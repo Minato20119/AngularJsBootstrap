@@ -2,9 +2,10 @@
 <html lang="en" ng-app="crudApp">
 <head>
 <meta charset="UTF-8">
-<title>Book AngularJS</title>
+<title>${title}</title>
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
 <link href="css/menu.css" rel="stylesheet" />
-<!-- Latest compiled and minified CSS -->
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 

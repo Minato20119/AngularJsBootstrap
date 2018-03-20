@@ -26,4 +26,7 @@ app.config([
 				}
 			});
 			$urlRouterProvider.otherwise('/');
-		} ]);
+		}
+		
+		
+]);
