@@ -5,7 +5,7 @@ angular.module('crudApp').factory('BookService',
         function ($localStorage, $http, $q, urls) {
  
             var factory = {
-                loadAllUsers: loadAllUsers,
+                loadAllUsers: loadAllBooks,
                 getAllUsers: getAllUsers,
                 getUser: getUser,
                 createUser: createUser,
@@ -15,14 +15,14 @@ angular.module('crudApp').factory('BookService',
  
             return factory;
  
-            function loadAllUsers() {
+            function loadAllBooks() {
                 console.log('Fetching all books');
                 var deferred = $q.defer();
                 $http.get(urls.BOOK_SERVICE_API)
                     .then(
                         function (response) {
                             console.log('Fetched successfully all books');
-                            $localStorage.books = response.data;
+                            $localStorage.bookss = response.data;
                             deferred.resolve(response);
                         },
                         function (errResponse) {
@@ -34,7 +34,7 @@ angular.module('crudApp').factory('BookService',
             }
  
             function getAllUsers(){
-                return $localStorage.books;
+                return $localStorage.bookss;
             }
  
             function getUser(id) {

@@ -1,11 +1,8 @@
 'use strict';
 
-angular.module('crudApp').controller(
-				'BookController',
-				[
-						'BookService',
-						'$scope',
-						function(BookService, $scope) {
+angular.module('crudApp').controller('BookController',
+				['BookService', '$scope', 
+					function(BookService, $scope) {
 
 							var self = this;
 							self.book = {};

@@ -41,7 +41,7 @@ app.config(['$stateProvider','$urlRouterProvider',
 				controller : 'BorrowingController',
 				controllerAs : 'ctrl',
 				resolve : {
-					books : function($q, BorrowingService) {
+					borrowings : function($q, BorrowingService) {
 						console.log('Load all borrowing');
 						var deferred = $q.defer();
 						BorrowingService.loadAllUsers().then(deferred.resolve, deferred.resolve);
@@ -56,7 +56,7 @@ app.config(['$stateProvider','$urlRouterProvider',
 				controller : 'ReaderController',
 				controllerAs : 'ctrl',
 				resolve : {
-					books : function($q, ReaderService) {
+					readers : function($q, ReaderService) {
 						console.log('Load all reader');
 						var deferred = $q.defer();
 						ReaderService.loadAllUsers().then(deferred.resolve, deferred.resolve);

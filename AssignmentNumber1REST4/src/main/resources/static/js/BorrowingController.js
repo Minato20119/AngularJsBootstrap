@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('crudApp').controller(
-				'BookController',
+				'BorrowingController',
 				[
-						'BookService',
+						'BorrowingService',
 						'$scope',
-						function(BookService, $scope) {
+						function(BorrowingService, $scope) {
 
 							var self = this;
-							self.book = {};
-							self.books = [];
+							self.borrowing = {};
+							self.borrowings = [];
 
 							self.submit = submit;
 							self.getAllUsers = getAllUsers;
@@ -28,26 +28,26 @@ angular.module('crudApp').controller(
 
 							function submit() {
 								console.log('Submitting');
-								if (self.book.id === undefined
-										|| self.book.id === null) {
-									console.log('Saving New User', self.book);
-									createUser(self.book);
+								if (self.borrowing.idBorrowing === undefined
+										|| self.borrowing.idBorrowing === null) {
+									console.log('Saving New Borrowing', self.borrowing);
+									createUser(self.borrowing);
 								} else {
-									updateUser(self.book, self.book.id);
-									console.log('User updated with id ',
-											self.book.id);
+									updateUser(self.borrowing, self.borrowing.idBorrowing);
+									console.log('Borrowing updated with id ',
+											self.borrowing.idBorrowing);
 								}
 							}
 
-							function createUser(book) {
-								console.log('About to create user');
-								BookService
-										.createUser(book)
+							function createUser(borrowing) {
+								console.log('About to create borrowing');
+								BorrowingService
+										.createUser(borrowing)
 										.then(
 												function(response) {
 													console
-															.log('User created successfully');
-													self.successMessage = 'User created successfully';
+															.log('Borrowing created successfully');
+													self.successMessage = 'Borrowing created successfully';
 													self.errorMessage = '';
 													self.done = true;
 													reset();
@@ -56,75 +56,72 @@ angular.module('crudApp').controller(
 												},
 												function(errResponse) {
 													console
-															.error('Error while creating User');
-													self.errorMessage = 'Error while creating User: '
+															.error('Error while creating Borrowing');
+													self.errorMessage = 'Error while creating Borrowing: '
 															+ errResponse.data.errorMessage;
 													self.successMessage = '';
 												});
 							}
 
-							function updateUser(book, id) {
-								console.log('About to update user');
-								BookService
-										.updateUser(book, id)
+							function updateUser(borrowing, idBorrowing) {
+								console.log('About to update borrowing');
+								BorrowingService
+										.updateUser(borrowing, idBorrowing)
 										.then(
 												function(response) {
 													console
-															.log('User updated successfully');
-													self.successMessage = 'User updated successfully';
+															.log('Borrowing updated successfully');
+													self.successMessage = 'Borrowing updated successfully';
 													self.errorMessage = '';
 													self.done = true;
-													self.book = {};
+													self.borrowing = {};
 													$scope.myForm.$setPristine();
 													reset();
 												},
 												function(errResponse) {
 													console
-															.error('Error while updating User');
-													self.errorMessage = 'Error while updating User '
+															.error('Error while updating Borrowing');
+													self.errorMessage = 'Error while updating Borrowing '
 															+ errResponse.data;
 													self.successMessage = '';
 												});
 							}
 
-							function removeUser(id) {
-								console.log('About to remove User with id '
-										+ id);
-								BookService
-										.removeUser(id)
+							function removeUser(idBorrowing) {
+								console.log('About to remove Borrowing with id ' + idBorrowing);
+								BorrowingService
+										.removeUser(idBorrowing)
 										.then(
 												function() {
-													console
-															.log('User '
-																	+ id
+													console.log('Borrowing '
+																	+ idBorrowing
 																	+ ' removed successfully');
 												},
 												function(errResponse) {
-													console
-															.error('Error while removing user '
-																	+ id
+													console.error('Error while removing Borrowing '
+																	+ idBorrowing
 																	+ ', Error :'
 																	+ errResponse.data);
 												});
 							}
 
 							function getAllUsers() {
-								return BookService.getAllUsers();
+								return BorrowingService.getAllUsers();
 							}
 
-							function editUser(id) {
+							function editUser(idBorrowing) {
 								self.successMessage = '';
 								self.errorMessage = '';
-								BookService
-										.getUser(id)
+								BorrowingService
+										.getUser(idBorrowing)
 										.then(
-												function(book) {
-													self.book = book;
+												function(borrowing) {
+													self.borrowing = borrowing;
 												},
 												function(errResponse) {
 													console
-															.error('Error while removing user '
-																	+ idbook
+															.error('Error while removing borrowing '
+																	+ idBorrowing
 																	+ ', Error :'
 																	+ errResponse.data);
 												});
@@ -132,7 +129,7 @@ angular.module('crudApp').controller(
 							function reset() {
 								self.successMessage = '';
 								self.errorMessage = '';
-								self.book = {};
+								self.borrowing = {};
 								$scope.myForm.$setPristine(); // reset Form
 							}
 						} ]);

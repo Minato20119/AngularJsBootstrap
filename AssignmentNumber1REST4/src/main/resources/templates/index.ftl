@@ -38,9 +38,9 @@
 			<a class="navbar-brand" ui-sref="home">Home</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li><a ui-sref="displayBook">Book</a></li>
-			<li><a ui-sref="displayBorrowing">Borrowing</a></li>
-			<li><a ui-sref="displayReader">Reader</a></li>
+			<li><a ui-sref="displayBook" ui-sref-active>Book</a></li>
+			<li><a ui-sref="displayBorrowing" ui-sref-active>Borrowing</a></li>
+			<li><a ui-sref="displayReader" ui-sref-active>Reader</a></li>
 		</ul>
 	</nav>
 

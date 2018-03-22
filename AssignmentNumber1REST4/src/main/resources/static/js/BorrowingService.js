@@ -1,6 +1,6 @@
 'use strict';
  
-angular.module('crudApp').factory('BookService',
+angular.module('crudApp').factory('BorrowingService',
     ['$localStorage', '$http', '$q', 'urls',
         function ($localStorage, $http, $q, urls) {
  
@@ -16,17 +16,17 @@ angular.module('crudApp').factory('BookService',
             return factory;
  
             function loadAllUsers() {
-                console.log('Fetching all books');
+                console.log('Fetching all borrowing');
                 var deferred = $q.defer();
-                $http.get(urls.BOOK_SERVICE_API)
+                $http.get(urls.BORROWING_SERVICE_API)
                     .then(
                         function (response) {
-                            console.log('Fetched successfully all books');
-                            $localStorage.books = response.data;
+                            console.log('Fetched successfully all borrowing');
+                            $localStorage.borrowings = response.data;
                             deferred.resolve(response);
                         },
                         function (errResponse) {
-                            console.error('Error while loading users');
+                            console.error('Error while loading borrowing');
                             deferred.reject(errResponse);
                         }
                     );
@@ -34,71 +34,71 @@ angular.module('crudApp').factory('BookService',
             }
  
             function getAllUsers(){
-                return $localStorage.books;
+                return $localStorage.borrowings;
             }
  
-            function getUser(id) {
-                console.log('Fetching Book with id :'+id);
+            function getUser(idBorrowing) {
+                console.log('Fetching borrowing with id :'+ idBorrowing);
                 var deferred = $q.defer();
-                $http.get(urls.BOOK_SERVICE_API + id)
+                $http.get(urls.BORROWING_SERVICE_API + idBorrowing)
                     .then(
                         function (response) {
-                            console.log('Fetched successfully Book with id :'+id);
+                            console.log('Fetched successfully borrowing with id :'+idBorrowing);
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                            console.error('Error while loading Book with id :'+id);
+                            console.error('Error while loading borrowing with id :'+ididBorrowing);
                             deferred.reject(errResponse);
                         }
                     );
                 return deferred.promise;
             }
  
-            function createUser(book) {
-                console.log('Creating Book');
+            function createUser(borrowing) {
+                console.log('Creating borrowing');
                 var deferred = $q.defer();
-                $http.post(urls.BOOK_SERVICE_API, book)
+                $http.post(urls.BORROWING_SERVICE_API, borrowing)
                     .then(
                         function (response) {
                             loadAllUsers();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                           console.error('Error while creating Book : '+errResponse.data.errorMessage);
+                           console.error('Error while creating borrowing : '+errResponse.data.errorMessage);
                            deferred.reject(errResponse);
                         }
                     );
                 return deferred.promise;
             }
  
-            function updateUser(book, id) {
-                console.log('Updating Book with id '+id);
+            function updateUser(borrowing, idBorrowing) {
+                console.log('Updating borrowing with id '+ idBorrowing);
                 var deferred = $q.defer();
-                $http.put(urls.BOOK_SERVICE_API + id, book)
+                $http.put(urls.BORROWING_SERVICE_API + idBorrowing, borrowing)
                     .then(
                         function (response) {
                             loadAllUsers();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                            console.error('Error while updating User with id :'+id);
+                            console.error('Error while updating borrowing with id :'+ idBorrowing);
                             deferred.reject(errResponse);
                         }
                     );
                 return deferred.promise;
             }
  
-            function removeUser(id) {
-                console.log('Removing Book with id '+id);
+            function removeUser(idBorrowing) {
+                console.log('Removing borrowing with id '+ idBorrowing);
                 var deferred = $q.defer();
-                $http.delete(urls.BOOK_SERVICE_API + id)
+                $http.delete(urls.BORROWING_SERVICE_API + idBorrowing)
                     .then(
                         function (response) {
                             loadAllUsers();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {
-                            console.error('Error while removing User with id :'+id);
+                            console.error('Error while removing borrowing with id :'+ idBorrowing);
                             deferred.reject(errResponse);
                         }
                     );

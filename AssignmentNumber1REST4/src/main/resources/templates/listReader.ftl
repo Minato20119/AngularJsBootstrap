@@ -18,7 +18,7 @@
 							<label class="col-md-2 control-lable" for="address">Address</label>
 							<div class="col-md-7">
 								<input type="text" ng-model="ctrl.reader.address" id="address"
-									class="username form-control input-sm"
+									class="form-control input-sm"
 									placeholder="Enter your address" required ng-minlength="3" />
 							</div>
 						</div>
@@ -28,7 +28,7 @@
 						<div class="form-group col-md-12">
 							<label class="col-md-2 control-lable" for="birthday">Birthday</label>
 							<div class="col-md-7">
-								<input type="datetime" ng-model="ctrl.reader.birthday" id="birthday"
+								<input type="date" ng-model="ctrl.reader.birthday" id="birthday"
 									class="form-control input-sm"
 									placeholder="Enter your birthday" />
 							</div>
@@ -106,7 +106,7 @@
 						<tr ng-repeat="u in ctrl.getAllUsers()">
 							<td>{{u.id}}</td>
 							<td>{{u.address}}</td>
-							<td>{{u.birthday}}</td>
+							<td>{{u.birthday | date:dd/MM/yyyy}}</td>
 							<td>{{u.firstName}}</td>
 							<td>{{u.lastName}}</td>
 							<td>{{u.sex}}</td>
