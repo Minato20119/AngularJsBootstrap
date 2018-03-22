@@ -18,7 +18,11 @@ angular.module('crudApp').controller(
 							self.removeUser = removeUser;
 							self.editUser = editUser;
 							self.reset = reset;
+							
+							self.getAllBooks = getAllBooks;
+							self.getAllReaders = getAllReaders;
 
+							self.onlyIntegers = /^\d+$/;
 							self.successMessage = '';
 							self.errorMessage = '';
 							self.done = false;
@@ -107,6 +111,16 @@ angular.module('crudApp').controller(
 
 							function getAllUsers() {
 								return BorrowingService.getAllUsers();
+							}
+							
+							// Get all books
+							function getAllBooks() {
+								return BorrowingService.getAllBooks();
+							}
+							
+							// Get all readers
+							function getAllReaders() {
+								return BorrowingService.getAllReaders();
 							}
 
 							function editUser(idBorrowing) {

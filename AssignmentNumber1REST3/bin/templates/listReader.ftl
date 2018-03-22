@@ -106,7 +106,7 @@
 						<tr ng-repeat="u in ctrl.getAllUsers()">
 							<td>{{u.id}}</td>
 							<td>{{u.address}}</td>
-							<td>{{u.birthday | date:dd/MM/yyyy}}</td>
+							<td>{{u.birthday | date}}</td>
 							<td>{{u.firstName}}</td>
 							<td>{{u.lastName}}</td>
 							<td>{{u.sex}}</td>

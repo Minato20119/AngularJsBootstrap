@@ -12,11 +12,15 @@ angular.module('crudApp').factory('BorrowingService',
                 updateUser: updateUser,
                 removeUser: removeUser,
                 
-                load
+                loadAllBooks: loadAllBooks,
+                loadAllReaders: loadAllReaders,
+                getAllBooks: getAllBooks,
+                getAllReaders: getAllReaders,
             };
  
             return factory;
  
+            // load all borrowing
             function loadAllUsers() {
                 console.log('Fetching all borrowing');
                 var deferred = $q.defer();
@@ -38,7 +42,55 @@ angular.module('crudApp').factory('BorrowingService',
             function getAllUsers(){
                 return $localStorage.borrowings;
             }
+            
+            // load all books
+            function loadAllBooks() {
+                console.log('Fetching all books from borrowing');
+                var deferred = $q.defer();
+                $http.get(urls.BOOK_SERVICE_API)
+                    .then(
+                        function (response) {
+                            console.log('Fetched successfully all books from borrowing');
+                            $localStorage.books = response.data;
+                            deferred.resolve(response);
+                        },
+                        function (errResponse) {
+                            console.error('Error while loading all books from borrowing');
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
  
+            function getAllBooks(){
+                return $localStorage.books;
+            }
+            
+            // load all readers
+            function loadAllReaders() {
+                console.log('Fetching all readers from borrowing');
+                var deferred = $q.defer();
+                $http.get(urls.READER_SERVICE_API)
+                    .then(
+                        function (response) {
+                            console.log('Fetched successfully all readers from borrowing');
+                            $localStorage.readers = response.data;
+                            deferred.resolve(response);
+                        },
+                        function (errResponse) {
+                            console.error('Error while loading readers from borrowing');
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+ 
+            function getAllReaders(){
+                return $localStorage.readers;
+            }
+            
+            
+            //
             function getUser(idBorrowing) {
                 console.log('Fetching borrowing with id :'+ idBorrowing);
                 var deferred = $q.defer();

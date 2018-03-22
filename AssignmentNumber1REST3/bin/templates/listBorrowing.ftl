@@ -15,33 +15,31 @@
 					<input type="hidden" ng-model="ctrl.borrowing.idBorrowing" />
 
 					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="">Select name book:</label> 
-							<select ng-repeat="u in ctrl.getObjectBook()
-								class="form-control form-control-lg" name="nameBook"
-								id="nameBook" required>
-								<option value="">Choose...</option>
-								
-								<option value="{{u.nameBook}}">{{u.nameBook}}</option>
-							
-							</select>
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="book">Select book</label> 
+							<div class="col-md-7">
+								<select class="form-control" id="sel1">
+								<option style="text-align: center;">Choose a book</option>
+									<option ng-repeat="b in ctrl.getAllBooks()" ng-selected="{{u.book.nameBook}} == {{b.nameBook}}">{{b.nameBook}}</option>
+								</select>
+							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="">Select name reader:</label> 
-							<select ng-repeat="u in ctrl.getObjectReader()
-								class="form-control form-control-lg" name="idReader"
-								id="idReader" required>
-								<option value="">Choose...</option>
-								
-								<option value="{{u.id}}">{{u.id}}</option>
-							</select>
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="reader">Select reader</label> 
+							<div class="col-md-7">
+								<select class="form-control" id="sel2">
+									<option style="text-align: center;">Choose a reader</option>
+									<option ng-repeat="r in ctrl.getAllReaders()" ng-selected="{{u.book.id}}">{{r.firstName + " " + r.lastName}}</option>
+								</select>
+							</div>
 						</div>
 					</div>
 
-					<!-- ///////////////////////////////////////////////////////////////////////////////  -->
+					<!--
+					 ///////////////////////////////////////////////////////////////////////////////  -->
 
 					<div class="row">
 						<div class="form-group col-md-12">
@@ -95,8 +93,8 @@
 							<th>ID</th>
 							<th>Borrowed Day</th>
 							<th>Reimbursed Day</th>
-							<th>ID Book</th>
-							<th>ID Reader</th>
+							<th>Name Book</th>
+							<th>Full name Reader</th>
 							<th width="100"></th>
 							<th width="100"></th>
 						</tr>
@@ -104,10 +102,10 @@
 					<tbody>
 						<tr ng-repeat="u in ctrl.getAllUsers()">
 							<td>{{u.idBorrowing}}</td>
-							<td>{{u.borrowedDay}}</td>
-							<td>{{u.reimbursedDay}}</td>
-							<td>{{u.idBook}}</td>
-							<td>{{u.idReader}}</td>
+							<td>{{u.borrowedDay | date:MM/dd/yyyy}}</td>
+							<td>{{u.reimbursedDay | date:MM/dd/yyyy}}</td>
+							<td>{{u.book.nameBook}}</td>
+							<td>{{u.reader.firstName + " " + u.reader.lastName}}</td>
 							<td><button type="button"
 									ng-click="ctrl.editUser(u.idBorrowing)"
 									class="btn btn-success custom-width">Edit</button></td>
